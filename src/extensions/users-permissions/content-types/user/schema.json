@@ -65,25 +65,47 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "rating": {
-      "type": "string"
-    },
-    "phoneNumber": {
+    "phone": {
       "type": "string"
     },
     "location": {
       "type": "string"
     },
-    "profilePicture": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "offers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offer.offer",
+      "mappedBy": "provider"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "users_permissions_user"
+    },
+    "chats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "users_permissions_users"
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "sender_permissions_user"
+    },
+    "recipient_messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "recipient_permissions_user"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "mappedBy": "users_permissions_users"
     }
   }
 }
